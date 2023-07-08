@@ -22,22 +22,26 @@ import os
 if os.name == 'nt':
     import win32api
 
-    win32api.LoadLibrary('TestDemo')
+    win32api.LoadLibrary('LocationRotation')
 
 import fastdds
-import TestDemo
+import LocationRotation
 
 
 class ReaderListener(fastdds.DataReaderListener):
     def __init__(self):
         super().__init__()
 
+    # 加断点不停？
     def on_data_available(self, reader):
         info = fastdds.SampleInfo()
-        data = TestDemo.TestDemo()
-        reader.take_next_sample(data, info)
-
-        print("Received {message} : {index}".format(message=data.message(), index=data.id()))
+        lRBean = LocationRotation.LocationRotationBean()
+        # data = TestDemo.TestDemo()
+        reader.take_next_sample(lRBean, info)
+        players = lRBean.Players()
+        player = players[0]
+        # print("Received {message} : {index}".format(message=data.message(), index=data.id()))
+        print("Received: {x}".format(x=player.x()))
 
     def on_subscription_matched(self, datareader, info):
         if (0 < info.current_count_change):
@@ -55,8 +59,9 @@ class Reader():
         self.participant = factory.create_participant(domain, self.participant_qos)
         # self.participant = factory.create_participant_with_profile('participant_profile')
 
-        self.topic_data_type = TestDemo.TestDemoPubSubType()
-        self.topic_data_type.setName("TestDemoDataType")
+        # self.topic_data_type = TestDemo.TestDemoPubSubType()
+        self.topic_data_type = LocationRotation.LocationRotationBeanPubSubType()
+        self.topic_data_type.setName("LocationRotationBean")
         self.type_support = fastdds.TypeSupport(self.topic_data_type)
         self.participant.register_type(self.type_support)
 

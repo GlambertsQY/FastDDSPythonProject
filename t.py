@@ -3,9 +3,9 @@ import os
 if os.name == 'nt':
     import win32api
 
-    win32api.LoadLibrary('TestDemo')
+    win32api.LoadLibrary('LocationRotation')
 
 import fastdds
+import LocationRotation
 
-t = fastdds.DomainParticipantFactory.get_instance()
 print("Succeeded")

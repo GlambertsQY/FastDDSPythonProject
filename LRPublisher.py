@@ -24,10 +24,10 @@ from threading import Condition
 if os.name == 'nt':
     import win32api
 
-    win32api.LoadLibrary('TestDemo')
+    win32api.LoadLibrary('LocationRotation')
 
 import fastdds
-import TestDemo
+import LocationRotation
 
 
 class WriterListener(fastdds.DataWriterListener):
@@ -67,8 +67,9 @@ class Writer:
         factory.get_default_participant_qos(self.participant_qos)
         self.participant = factory.create_participant(domain, self.participant_qos)
 
-        self.topic_data_type = TestDemo.TestDemoPubSubType()
-        self.topic_data_type.setName("TestDemoDataType")
+
+        self.topic_data_type = LocationRotation.LocationRotationBeanPubSubType()
+        self.topic_data_type.setName("LocationRotationBean")
         self.type_support = fastdds.TypeSupport(self.topic_data_type)
         self.participant.register_type(self.type_support)
 
@@ -90,14 +91,21 @@ class Writer:
         self.index = 0
 
     def write(self):
-        data = TestDemo.TestDemo()
-        if self.machine:
-            data.message("TestDemo " + self.machine)
-        else:
-            data.message("TestDemo")
-        data.id(self.index)
-        self.writer.write(data)
-        print("Sending {message} : {index}".format(message=data.message(), index=data.id()))
+        players = LocationRotation.LocationRotationBean()
+        # data = TestDemo.TestDemo()
+        Player = LocationRotation.Player()
+        # if self.machine:
+        #     players.message("TestDemo " + self.machine)
+        # else:
+        #     players.message("TestDemo")
+        Player.id(1)
+        Player.x(1.1)
+        Player.y(1.2)
+        Player.ValueRz(1.3)
+        players.Players([Player])
+        self.writer.write(players)
+        # print("Sending {message} : {index}".format(message=players.message(), index=players.id()))
+        print("Sending success!")
         self.index = self.index + 1
 
     def __del__(self):
