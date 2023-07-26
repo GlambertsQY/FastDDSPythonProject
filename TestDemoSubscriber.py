@@ -17,15 +17,16 @@ Script to test Fast DDS python bindings
 """
 import os
 
+import LocationRotation
+
 # until https://bugs.python.org/issue46276 is not fixed we can apply this
 # workaround on windows
 if os.name == 'nt':
     import win32api
 
-    win32api.LoadLibrary('TestDemo')
+    win32api.LoadLibrary('LocationRotation')
 
 import fastdds
-import TestDemo
 
 
 class ReaderListener(fastdds.DataReaderListener):
@@ -34,10 +35,10 @@ class ReaderListener(fastdds.DataReaderListener):
 
     def on_data_available(self, reader):
         info = fastdds.SampleInfo()
-        data = TestDemo.TestDemo()
+        data = LocationRotation.LocationRotationBean()
         reader.take_next_sample(data, info)
 
-        print("Received {message} : {index}".format(message=data.message(), index=data.id()))
+        print("Received {message}".format(message=data.LRJsonString()))
 
     def on_subscription_matched(self, datareader, info):
         if (0 < info.current_count_change):
@@ -55,14 +56,14 @@ class Reader():
         self.participant = factory.create_participant(domain, self.participant_qos)
         # self.participant = factory.create_participant_with_profile('participant_profile')
 
-        self.topic_data_type = TestDemo.TestDemoPubSubType()
-        self.topic_data_type.setName("TestDemoDataType")
+        self.topic_data_type = LocationRotation.LocationRotationBeanPubSubType()
+        self.topic_data_type.setName("LocationRotationDataType")
         self.type_support = fastdds.TypeSupport(self.topic_data_type)
         self.participant.register_type(self.type_support)
 
         self.topic_qos = fastdds.TopicQos()
         self.participant.get_default_topic_qos(self.topic_qos)
-        self.topic = self.participant.create_topic("myTopic", self.topic_data_type.getName(), self.topic_qos)
+        self.topic = self.participant.create_topic("UE2Python", self.topic_data_type.getName(), self.topic_qos)
 
         self.subscriber_qos = fastdds.SubscriberQos()
         self.participant.get_default_subscriber_qos(self.subscriber_qos)

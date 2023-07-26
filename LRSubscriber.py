@@ -35,13 +35,12 @@ class ReaderListener(fastdds.DataReaderListener):
     # 加断点不停？
     def on_data_available(self, reader):
         info = fastdds.SampleInfo()
-        lRBean = LocationRotation.LocationRotationBean()
+        sendStr = LocationRotation.LocationRotationBean()
         # data = TestDemo.TestDemo()
-        reader.take_next_sample(lRBean, info)
-        players = lRBean.Players()
-        player = players[0]
+        reader.take_next_sample(sendStr, info)
+        sendStr = sendStr.LRJsonString()
         # print("Received {message} : {index}".format(message=data.message(), index=data.id()))
-        print("Received: {x}".format(x=player.x()))
+        print("Received: {s}".format(s=sendStr))
 
     def on_subscription_matched(self, datareader, info):
         if (0 < info.current_count_change):
@@ -67,7 +66,7 @@ class Reader():
 
         self.topic_qos = fastdds.TopicQos()
         self.participant.get_default_topic_qos(self.topic_qos)
-        self.topic = self.participant.create_topic("myTopic", self.topic_data_type.getName(), self.topic_qos)
+        self.topic = self.participant.create_topic("UE2Python", self.topic_data_type.getName(), self.topic_qos)
 
         self.subscriber_qos = fastdds.SubscriberQos()
         self.participant.get_default_subscriber_qos(self.subscriber_qos)

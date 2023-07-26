@@ -91,22 +91,17 @@ class Writer:
         self.index = 0
 
     def write(self):
-        players = LocationRotation.LocationRotationBean()
+        sendStr = LocationRotation.LocationRotationBean()
         # data = TestDemo.TestDemo()
-        Player = LocationRotation.Player()
+        sendStr.LRJsonString("qwe23[]f")
+
         # if self.machine:
         #     players.message("TestDemo " + self.machine)
         # else:
         #     players.message("TestDemo")
-        Player.id(1)
-        Player.x(1.1)
-        Player.y(1.2)
-        Player.ValueRz(1.3)
-        players.Players([Player])
-        self.writer.write(players)
+        self.writer.write(sendStr)
         # print("Sending {message} : {index}".format(message=players.message(), index=players.id()))
         print("Sending success!")
-        self.index = self.index + 1
 
     def __del__(self):
         factory = fastdds.DomainParticipantFactory.get_instance()

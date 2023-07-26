@@ -119,137 +119,6 @@ class SwigPyIterator(object):
 # Register SwigPyIterator in _LocationRotationWrapper:
 _LocationRotationWrapper.SwigPyIterator_swigregister(SwigPyIterator)
 import fastdds
-class _PlayerSeq(fastdds.LoanableCollection):
-    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
-
-    def __init__(self, *args, **kwargs):
-        raise AttributeError("No constructor defined - class is abstract")
-    __repr__ = _swig_repr
-    __swig_destroy__ = _LocationRotationWrapper.delete__PlayerSeq
-
-# Register _PlayerSeq in _LocationRotationWrapper:
-_LocationRotationWrapper._PlayerSeq_swigregister(_PlayerSeq)
-class PlayerSeq(_PlayerSeq):
-    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
-    __repr__ = _swig_repr
-    __swig_destroy__ = _LocationRotationWrapper.delete_PlayerSeq
-
-    def __init__(self, *args):
-        _LocationRotationWrapper.PlayerSeq_swiginit(self, _LocationRotationWrapper.new_PlayerSeq(*args))
-
-    def __len__(self):
-        return _LocationRotationWrapper.PlayerSeq___len__(self)
-
-    def __getitem__(self, i):
-        return _LocationRotationWrapper.PlayerSeq___getitem__(self, i)
-
-# Register PlayerSeq in _LocationRotationWrapper:
-_LocationRotationWrapper.PlayerSeq_swigregister(PlayerSeq)
-class Player_vector(object):
-    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
-    __repr__ = _swig_repr
-
-    def iterator(self):
-        return _LocationRotationWrapper.Player_vector_iterator(self)
-    def __iter__(self):
-        return self.iterator()
-
-    def __nonzero__(self):
-        return _LocationRotationWrapper.Player_vector___nonzero__(self)
-
-    def __bool__(self):
-        return _LocationRotationWrapper.Player_vector___bool__(self)
-
-    def __len__(self):
-        return _LocationRotationWrapper.Player_vector___len__(self)
-
-    def __getslice__(self, i, j):
-        return _LocationRotationWrapper.Player_vector___getslice__(self, i, j)
-
-    def __setslice__(self, *args):
-        return _LocationRotationWrapper.Player_vector___setslice__(self, *args)
-
-    def __delslice__(self, i, j):
-        return _LocationRotationWrapper.Player_vector___delslice__(self, i, j)
-
-    def __delitem__(self, *args):
-        return _LocationRotationWrapper.Player_vector___delitem__(self, *args)
-
-    def __getitem__(self, *args):
-        return _LocationRotationWrapper.Player_vector___getitem__(self, *args)
-
-    def __setitem__(self, *args):
-        return _LocationRotationWrapper.Player_vector___setitem__(self, *args)
-
-    def pop(self):
-        return _LocationRotationWrapper.Player_vector_pop(self)
-
-    def append(self, x):
-        return _LocationRotationWrapper.Player_vector_append(self, x)
-
-    def empty(self):
-        return _LocationRotationWrapper.Player_vector_empty(self)
-
-    def size(self):
-        return _LocationRotationWrapper.Player_vector_size(self)
-
-    def swap(self, v):
-        return _LocationRotationWrapper.Player_vector_swap(self, v)
-
-    def begin(self):
-        return _LocationRotationWrapper.Player_vector_begin(self)
-
-    def end(self):
-        return _LocationRotationWrapper.Player_vector_end(self)
-
-    def rbegin(self):
-        return _LocationRotationWrapper.Player_vector_rbegin(self)
-
-    def rend(self):
-        return _LocationRotationWrapper.Player_vector_rend(self)
-
-    def clear(self):
-        return _LocationRotationWrapper.Player_vector_clear(self)
-
-    def get_allocator(self):
-        return _LocationRotationWrapper.Player_vector_get_allocator(self)
-
-    def pop_back(self):
-        return _LocationRotationWrapper.Player_vector_pop_back(self)
-
-    def erase(self, *args):
-        return _LocationRotationWrapper.Player_vector_erase(self, *args)
-
-    def __init__(self, *args):
-        _LocationRotationWrapper.Player_vector_swiginit(self, _LocationRotationWrapper.new_Player_vector(*args))
-
-    def push_back(self, x):
-        return _LocationRotationWrapper.Player_vector_push_back(self, x)
-
-    def front(self):
-        return _LocationRotationWrapper.Player_vector_front(self)
-
-    def back(self):
-        return _LocationRotationWrapper.Player_vector_back(self)
-
-    def assign(self, n, x):
-        return _LocationRotationWrapper.Player_vector_assign(self, n, x)
-
-    def resize(self, *args):
-        return _LocationRotationWrapper.Player_vector_resize(self, *args)
-
-    def insert(self, *args):
-        return _LocationRotationWrapper.Player_vector_insert(self, *args)
-
-    def reserve(self, n):
-        return _LocationRotationWrapper.Player_vector_reserve(self, n)
-
-    def capacity(self):
-        return _LocationRotationWrapper.Player_vector_capacity(self)
-    __swig_destroy__ = _LocationRotationWrapper.delete_Player_vector
-
-# Register Player_vector in _LocationRotationWrapper:
-_LocationRotationWrapper.Player_vector_swigregister(Player_vector)
 class _LocationRotationBeanSeq(fastdds.LoanableCollection):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
 
@@ -276,59 +145,6 @@ class LocationRotationBeanSeq(_LocationRotationBeanSeq):
 
 # Register LocationRotationBeanSeq in _LocationRotationWrapper:
 _LocationRotationWrapper.LocationRotationBeanSeq_swigregister(LocationRotationBeanSeq)
-class Player(object):
-    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
-    __repr__ = _swig_repr
-    __swig_destroy__ = _LocationRotationWrapper.delete_Player
-
-    def __init__(self, *args):
-        _LocationRotationWrapper.Player_swiginit(self, _LocationRotationWrapper.new_Player(*args))
-
-    def __eq__(self, x):
-        return _LocationRotationWrapper.Player___eq__(self, x)
-
-    def __ne__(self, x):
-        return _LocationRotationWrapper.Player___ne__(self, x)
-
-    def id(self, *args):
-        return _LocationRotationWrapper.Player_id(self, *args)
-
-    def x(self, *args):
-        return _LocationRotationWrapper.Player_x(self, *args)
-
-    def y(self, *args):
-        return _LocationRotationWrapper.Player_y(self, *args)
-
-    def ValueRz(self, *args):
-        return _LocationRotationWrapper.Player_ValueRz(self, *args)
-
-    @staticmethod
-    def getMaxCdrSerializedSize(current_alignment=0):
-        return _LocationRotationWrapper.Player_getMaxCdrSerializedSize(current_alignment)
-
-    @staticmethod
-    def getCdrSerializedSize(data, current_alignment=0):
-        return _LocationRotationWrapper.Player_getCdrSerializedSize(data, current_alignment)
-
-    def serialize(self, cdr):
-        return _LocationRotationWrapper.Player_serialize(self, cdr)
-
-    def deserialize(self, cdr):
-        return _LocationRotationWrapper.Player_deserialize(self, cdr)
-
-    @staticmethod
-    def getKeyMaxCdrSerializedSize(current_alignment=0):
-        return _LocationRotationWrapper.Player_getKeyMaxCdrSerializedSize(current_alignment)
-
-    @staticmethod
-    def isKeyDefined():
-        return _LocationRotationWrapper.Player_isKeyDefined()
-
-    def serializeKey(self, cdr):
-        return _LocationRotationWrapper.Player_serializeKey(self, cdr)
-
-# Register Player in _LocationRotationWrapper:
-_LocationRotationWrapper.Player_swigregister(Player)
 class LocationRotationBean(object):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
@@ -343,8 +159,8 @@ class LocationRotationBean(object):
     def __ne__(self, x):
         return _LocationRotationWrapper.LocationRotationBean___ne__(self, x)
 
-    def Players(self, *args):
-        return _LocationRotationWrapper.LocationRotationBean_Players(self, *args)
+    def LRJsonString(self, *args):
+        return _LocationRotationWrapper.LocationRotationBean_LRJsonString(self, *args)
 
     @staticmethod
     def getMaxCdrSerializedSize(current_alignment=0):
@@ -374,45 +190,6 @@ class LocationRotationBean(object):
 # Register LocationRotationBean in _LocationRotationWrapper:
 _LocationRotationWrapper.LocationRotationBean_swigregister(LocationRotationBean)
 GEN_API_VER = _LocationRotationWrapper.GEN_API_VER
-class PlayerPubSubType(fastdds.TopicDataType):
-    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
-    __repr__ = _swig_repr
-
-    def __init__(self):
-        _LocationRotationWrapper.PlayerPubSubType_swiginit(self, _LocationRotationWrapper.new_PlayerPubSubType())
-    __swig_destroy__ = _LocationRotationWrapper.delete_PlayerPubSubType
-
-    def serialize(self, data, payload):
-        return _LocationRotationWrapper.PlayerPubSubType_serialize(self, data, payload)
-
-    def deserialize(self, payload, data):
-        return _LocationRotationWrapper.PlayerPubSubType_deserialize(self, payload, data)
-
-    def getSerializedSizeProvider(self, data):
-        return _LocationRotationWrapper.PlayerPubSubType_getSerializedSizeProvider(self, data)
-
-    def getKey(self, data, ihandle, force_md5=False):
-        return _LocationRotationWrapper.PlayerPubSubType_getKey(self, data, ihandle, force_md5)
-
-    def createData(self):
-        return _LocationRotationWrapper.PlayerPubSubType_createData(self)
-
-    def deleteData(self, data):
-        return _LocationRotationWrapper.PlayerPubSubType_deleteData(self, data)
-
-    def is_bounded(self):
-        return _LocationRotationWrapper.PlayerPubSubType_is_bounded(self)
-
-    def is_plain(self):
-        return _LocationRotationWrapper.PlayerPubSubType_is_plain(self)
-
-    def construct_sample(self, memory):
-        return _LocationRotationWrapper.PlayerPubSubType_construct_sample(self, memory)
-    m_md5 = property(_LocationRotationWrapper.PlayerPubSubType_m_md5_get, _LocationRotationWrapper.PlayerPubSubType_m_md5_set)
-    m_keyBuffer = property(_LocationRotationWrapper.PlayerPubSubType_m_keyBuffer_get, _LocationRotationWrapper.PlayerPubSubType_m_keyBuffer_set)
-
-# Register PlayerPubSubType in _LocationRotationWrapper:
-_LocationRotationWrapper.PlayerPubSubType_swigregister(PlayerPubSubType)
 class LocationRotationBeanPubSubType(fastdds.TopicDataType):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
