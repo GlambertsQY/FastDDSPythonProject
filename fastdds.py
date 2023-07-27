@@ -1987,6 +1987,10 @@ class WriteParams(object):
         return _fastdds_python.WriteParams_source_timestamp(self, *args)
     WRITE_PARAM_DEFAULT = property(_fastdds_python.WriteParams_WRITE_PARAM_DEFAULT_get, _fastdds_python.WriteParams_WRITE_PARAM_DEFAULT_set)
 
+    @staticmethod
+    def write_params_default():
+        return _fastdds_python.WriteParams_write_params_default()
+
     def __init__(self):
         _fastdds_python.WriteParams_swiginit(self, _fastdds_python.new_WriteParams())
     __swig_destroy__ = _fastdds_python.delete_WriteParams

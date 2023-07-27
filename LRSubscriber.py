@@ -22,10 +22,10 @@ import os
 if os.name == 'nt':
     import win32api
 
-    win32api.LoadLibrary('LocationRotation')
+    win32api.LoadLibrary('FastDDSJsonStr')
 
 import fastdds
-import LocationRotation
+import FastDDSJsonStr
 
 
 class ReaderListener(fastdds.DataReaderListener):
@@ -35,11 +35,9 @@ class ReaderListener(fastdds.DataReaderListener):
     # 加断点不停？
     def on_data_available(self, reader):
         info = fastdds.SampleInfo()
-        sendStr = LocationRotation.LocationRotationBean()
-        # data = TestDemo.TestDemo()
+        sendStr = FastDDSJsonStr.JsonStrBean()
         reader.take_next_sample(sendStr, info)
-        sendStr = sendStr.LRJsonString()
-        # print("Received {message} : {index}".format(message=data.message(), index=data.id()))
+        sendStr = sendStr.JsonString()
         print("Received: {s}".format(s=sendStr))
 
     def on_subscription_matched(self, datareader, info):
@@ -50,7 +48,7 @@ class ReaderListener(fastdds.DataReaderListener):
 
 
 class Reader():
-    def __init__(self, domain):
+    def __init__(self, domain, topic_name):
         factory = fastdds.DomainParticipantFactory.get_instance()
 
         self.participant_qos = fastdds.DomainParticipantQos()
@@ -59,14 +57,14 @@ class Reader():
         # self.participant = factory.create_participant_with_profile('participant_profile')
 
         # self.topic_data_type = TestDemo.TestDemoPubSubType()
-        self.topic_data_type = LocationRotation.LocationRotationBeanPubSubType()
+        self.topic_data_type = FastDDSJsonStr.JsonStrBeanPubSubType()
         self.topic_data_type.setName("LocationRotationBean")
         self.type_support = fastdds.TypeSupport(self.topic_data_type)
         self.participant.register_type(self.type_support)
 
         self.topic_qos = fastdds.TopicQos()
         self.participant.get_default_topic_qos(self.topic_qos)
-        self.topic = self.participant.create_topic("UE2Python", self.topic_data_type.getName(), self.topic_qos)
+        self.topic = self.participant.create_topic(topic_name, self.topic_data_type.getName(), self.topic_qos)
 
         self.subscriber_qos = fastdds.SubscriberQos()
         self.participant.get_default_subscriber_qos(self.subscriber_qos)
@@ -90,5 +88,5 @@ class Reader():
 
 
 if __name__ == '__main__':
-    reader = Reader(0)
+    reader = Reader(0, 'UE2Python')
     reader.run()

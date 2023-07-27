@@ -24,10 +24,10 @@ from threading import Condition
 if os.name == 'nt':
     import win32api
 
-    win32api.LoadLibrary('LocationRotation')
+    win32api.LoadLibrary('FastDDSJsonStr')
 
 import fastdds
-import LocationRotation
+import FastDDSJsonStr
 
 
 class WriterListener(fastdds.DataWriterListener):
@@ -56,7 +56,7 @@ class WriterListener(fastdds.DataWriterListener):
 
 
 class Writer:
-    def __init__(self, domain, machine):
+    def __init__(self, domain, machine, topic_name):
         self.machine = machine
         self._matched_reader = 0
         self._cvDiscovery = Condition()
@@ -68,8 +68,8 @@ class Writer:
         self.participant = factory.create_participant(domain, self.participant_qos)
 
 
-        self.topic_data_type = LocationRotation.LocationRotationBeanPubSubType()
-        self.topic_data_type.setName("LocationRotationBean")
+        self.topic_data_type = FastDDSJsonStr.JsonStrBeanPubSubType()
+        self.topic_data_type.setName("JsonStrBean")
         self.type_support = fastdds.TypeSupport(self.topic_data_type)
         self.participant.register_type(self.type_support)
 
@@ -77,7 +77,7 @@ class Writer:
         self.topic_qos.history = fastdds.KEEP_ALL_HISTORY_QOS
         self.topic_qos.deadline = 1000000
         self.participant.get_default_topic_qos(self.topic_qos)
-        self.topic = self.participant.create_topic("myTopic", self.topic_data_type.getName(), self.topic_qos)
+        self.topic = self.participant.create_topic(topic_name, self.topic_data_type.getName(), self.topic_qos)
 
         self.publisher_qos = fastdds.PublisherQos()
         self.participant.get_default_publisher_qos(self.publisher_qos)
@@ -91,9 +91,9 @@ class Writer:
         self.index = 0
 
     def write(self):
-        sendStr = LocationRotation.LocationRotationBean()
+        sendStr = FastDDSJsonStr.JsonStrBean()
         # data = TestDemo.TestDemo()
-        sendStr.LRJsonString("qwe23[]f")
+        sendStr.JsonString("qwe23[]f")
 
         # if self.machine:
         #     players.message("TestDemo " + self.machine)
@@ -122,7 +122,7 @@ class Writer:
 
 if __name__ == '__main__':
     print('Creating publisher.')
-    writer = Writer(0, 'tester01')
+    writer = Writer(0, 'tester01', 'myTopic')
     while True:
         writer.run()
         time.sleep(0.5)
